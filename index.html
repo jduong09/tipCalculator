@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+  <script type="text/javascript" src="./js/eventListeners.js" ></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Tip calculator app</title>
+</head>
+<body>
+  <header>
+    <h1><img id="logo" src="images/logo.svg" alt="logo" /></h1>
+  </header>
+  <main>
+    <form>
+      <h2>Bill</h2>
+      <label id="billLabel" for="billAmount">
+        <img id="icon-dollar" src="images/icon-dollar.svg" alt="icon-dollar" />
+        <input id="billAmount" type="number" name="billAmount" placeholder="0.00" />
+      </label>
+      
+      <h2>Select Tip %</h2>
+      <ul class="tipList">
+        <li>
+          <label for="fivePercentTip">
+            <input id="fivePercentTip" class="tipInput" type="button" value="5" />
+          </label>
+        </li>
+        <li>
+          <label for="tenPercentTip">
+            <input id="tenPercentTip" class="tipInput" type="button" value="10" />
+          </label>
+        </li>
+        <li>
+          <label for="fifteenPercentTip">
+            <input id="fifteenPercentTip" class="tipInput" type="button" value="15" />
+          </label>
+        </li>
+        <li>
+          <label for="twentyFivePercentTip">
+            <input id="twentyFivePercentTip" class="tipInput" type="button" value="25" />
+          </label>
+        </li>
+        <li>
+          <label for="fiftyPercentTip">
+            <input id="fiftyPercentTip" class="tipInput" type="button" value="50" />
+          </label>
+        </li>
+        <li>
+          <label for="customTip">
+            <input id="customTip" class="tipInput" type="button" value="Custom" />
+          </label>
+        </li>
+      </ul>
+  
+      <h2>Number of People</h2>
+      <label id="peopleLabel" for="numPeople">
+        <img id="icon-person" src="images/icon-person.svg" alt="icon-person" />
+        <input id="numPeople" type="number" name="numPeople" placeholder="0" />
+      </label>
+    </form>
+  
+    <div class="resultContainer">
+      <div id="tipContainer" class="group">
+        <h2>Tip Amount <span>/ person</span></h2>
+      </div>
+      <div id="totalContainer" class="group">
+        <h2>Total <span>/ person</span></h2>
+      </div>
+      <input id="resetBtn" type="button" value="Reset" />
+    </div>
+  
+
+  </main>
+
+</body>
+</html>
