@@ -1,8 +1,8 @@
 const removePreviousTotals = () => {
   const resultElements = document.getElementsByClassName('calculatedNumber');
-    if (resultElements.length !== 0) {
-    while (resultElements.length !== 0) {
-      resultElements[0].remove();
+  if (resultElements.length !== 0) {
+    for (let i = 0; i < resultElements.length; i++) {
+      resultElements[i].innerHTML = '$0.00';
     }
   }
 };
@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const numPeople = document.getElementById('numPeople');
   const numPeopleError = document.getElementById('numPeopleError');
   const tipContainer = document.getElementById('tipContainer');
+  const tipDiv = document.getElementById('tipDiv');
   const totalContainer = document.getElementById('totalContainer');
+  const totalDiv = document.getElementById('totalDiv');
   const resetBtn = document.getElementById('resetBtn');
 
   const formSubmit = () => {
@@ -44,12 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const totalPerPerson = (total / numPeople.value).toFixed(2);
     
-    const tipDiv = document.createElement('div');
-    tipDiv.classList.add('calculatedNumber');
+    
     tipDiv.innerHTML = `$${tipAmountPerPerson}`;
 
-    const totalDiv = document.createElement('div');
-    totalDiv.classList.add('calculatedNumber');
     totalDiv.innerHTML = `$${totalPerPerson}`;
 
     tipContainer.append(tipDiv);
