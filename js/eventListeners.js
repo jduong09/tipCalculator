@@ -1,62 +1,121 @@
+const removePreviousTotals = () => {
+  const resultElements = document.getElementsByClassName('calculatedNumber');
+    if (resultElements.length !== 0) {
+    while (resultElements.length !== 0) {
+      resultElements[0].remove();
+    }
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const billInput = document.getElementById('billAmount');
   const tipInputArr = document.getElementsByClassName('tipInput');
+  const customInput = document.getElementById('customTip');
   const numPeople = document.getElementById('numPeople');
+  const numPeopleError = document.getElementById('numPeopleError');
   const tipContainer = document.getElementById('tipContainer');
   const totalContainer = document.getElementById('totalContainer');
+  const resetBtn = document.getElementById('resetBtn');
 
+  const formSubmit = () => {
+    let tipValue;
+  
+    for (let i = 0; i < tipInputArr.length; i++) {
+      const input = tipInputArr[i];
+      if (input.classList.contains('selected')) {
+        tipValue = input.id === 'customTip' ? Number(input.value) : Number(input.value.substring(0, input.value.length - 1));
+
+      }
+    }
+
+    if (billInput.value === '' || !tipValue || numPeople.value === '' || numPeople.value === '0') {
+      removePreviousTotals()
+      return;
+    }
+
+    removePreviousTotals();
+
+    const billValue = billInput.value;
+
+    const tipAmount = ((billValue * 100) * (tipValue/100)/100).toFixed(2);
+    const tipAmountPerPerson = (tipAmount / numPeople.value).toFixed(2);
+
+    const total = Number(billValue) + Number(tipAmount);
+
+    const totalPerPerson = (total / numPeople.value).toFixed(2);
+    
+    const tipDiv = document.createElement('div');
+    tipDiv.classList.add('calculatedNumber');
+    tipDiv.innerHTML = `$${tipAmountPerPerson}`;
+
+    const totalDiv = document.createElement('div');
+    totalDiv.classList.add('calculatedNumber');
+    totalDiv.innerHTML = `$${totalPerPerson}`;
+
+    tipContainer.append(tipDiv);
+    totalContainer.append(totalDiv);
+  }
+
+  billInput.addEventListener('input', () => {
+    formSubmit();
+  })
+  
   for (let i = 0; i < tipInputArr.length; i++) {
-    tipInputArr[i].addEventListener('click', (e) => {
+    tipInputArr[i].addEventListener('click', () => {
       const input = tipInputArr[i];
 
       if (input.classList.contains('selected')) {
+        removePreviousTotals();
         return input.classList.remove('selected');
       }
 
       input.classList.add('selected');
+
+      for (let s = 0; s < tipInputArr.length; s++) {
+        if (tipInputArr[s].value !== tipInputArr[i].value) {
+          tipInputArr[s].classList.remove('selected');
+        }
+      }
+      formSubmit();
     });
   };
 
+  customInput.addEventListener('input', (e) => {
+    if (e.target.checkValidity()) {
+      customInput.classList.add('selected');
+      formSubmit();
+    }
+  })
+
+  // numPeople Listener
   numPeople.addEventListener('input', (e) => {
-    const resultElements = document.getElementsByClassName('calculatedNumber');
-    if (resultElements.length !== 0) {
-      while (resultElements.length !== 0) {
-        resultElements[0].remove();
+    if (Number(e.target.value) !== 0) {
+      numPeople.classList.remove('inputError');
+      numPeopleError.classList.remove('error');
+      numPeopleError.classList.add('hide');
+    } else {
+      numPeople.classList.add('inputError');
+      numPeopleError.classList.add('error');
+      numPeopleError.classList.remove('hide');
+      removePreviousTotals();
+      return;
+    }
+
+    formSubmit();
+  });
+
+  resetBtn.addEventListener('click', () => {
+    billInput.value = '';
+
+    for (let i = 0; i < tipInputArr.length; i++) {
+      const input = tipInputArr[i];
+      if (input.classList.contains('selected')) {
+        input.classList.remove('selected');
       }
     }
 
-    if (e.target.checkValidity()) {
-      const billValue = billInput.value;
-      let tipValue;
+    numPeople.value = '';
 
-      for (let i = 0; i < tipInputArr.length; i++) {
-        const input = tipInputArr[i];
-        if (input.classList.contains('selected')) {
-          tipValue = input.value;
-        }
-      }
-
-      console.log(billValue, tipValue, e.target.value);
-      const tipAmount = ((billValue * 100) * (tipValue/100)/100).toFixed(2);
-      const tipAmountPerPerson = (tipAmount / e.target.value).toFixed(2);
-      console.log(tipAmountPerPerson);
-
-      const total = Number(billValue) + Number(tipAmount);
-
-      const totalPerPerson = (total / e.target.value).toFixed(2);
-
-      console.log(totalPerPerson);
-      
-      const tipDiv = document.createElement('div');
-      tipDiv.classList.add('calculatedNumber');
-      tipDiv.innerHTML = `$${tipAmountPerPerson}`;
-
-      const totalDiv = document.createElement('div');
-      totalDiv.classList.add('calculatedNumber');
-      totalDiv.innerHTML = `$${totalPerPerson}`;
-
-      tipContainer.append(tipDiv);
-      totalContainer.append(totalDiv);
-    };
+    removePreviousTotals();
   });
 });

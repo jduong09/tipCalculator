@@ -18,6 +18,10 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  display: inline;
+}
+
 #logo {
   width: 87px;
   height: auto;
@@ -45,6 +49,10 @@ input {
   padding: .5rem;
   border-radius: .5rem;
   border: none;
+}
+
+#billInput:hover, #numPeople:hover, #customTip:hover {
+  border: 2px solid hsl(172, 67%, 45%);
 }
 
 #billLabel, .tipList, form {
@@ -91,8 +99,8 @@ h2 {
   border: 0;
 }
 
-.tipInput:hover {
-  background-color: hsl(172, 67%, 45%);
+.tipInput:hover, #resetBtn:hover {
+  background-color: hsl(185, 41%, 84%);
   color: hsl(183, 100%, 15%);
   cursor: pointer;
 }
@@ -105,6 +113,24 @@ h2 {
 #customTip {
   background-color: hsl(185, 41%, 84%);
   color:hsl(183, 100%, 15%);
+  text-align: right;
+}
+
+#customTip::placeholder {
+  text-align: center;
+}
+
+.error {
+  float: right;
+  color: hsl(16, 87%, 53%);
+}
+
+.hide {
+  display: none;
+}
+
+.inputError {
+  border: 2px solid hsl(16, 87%, 53%);
 }
 
 .resultContainer {

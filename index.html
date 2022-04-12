@@ -18,7 +18,7 @@
     <h1><img id="logo" src="images/logo.svg" alt="logo" /></h1>
   </header>
   <main>
-    <form>
+    <form id="calculatorForm">
       <h2>Bill</h2>
       <label id="billLabel" for="billAmount">
         <img id="icon-dollar" src="images/icon-dollar.svg" alt="icon-dollar" />
@@ -29,41 +29,44 @@
       <ul class="tipList">
         <li>
           <label for="fivePercentTip">
-            <input id="fivePercentTip" class="tipInput" type="button" value="5" />
+            <input id="fivePercentTip" class="tipInput" type="button" value="5%" />
           </label>
         </li>
         <li>
           <label for="tenPercentTip">
-            <input id="tenPercentTip" class="tipInput" type="button" value="10" />
+            <input id="tenPercentTip" class="tipInput" type="button" value="10%" />
           </label>
         </li>
         <li>
           <label for="fifteenPercentTip">
-            <input id="fifteenPercentTip" class="tipInput" type="button" value="15" />
+            <input id="fifteenPercentTip" class="tipInput" type="button" value="15%" />
           </label>
         </li>
         <li>
           <label for="twentyFivePercentTip">
-            <input id="twentyFivePercentTip" class="tipInput" type="button" value="25" />
+            <input id="twentyFivePercentTip" class="tipInput" type="button" value="25%" />
           </label>
         </li>
         <li>
           <label for="fiftyPercentTip">
-            <input id="fiftyPercentTip" class="tipInput" type="button" value="50" />
+            <input id="fiftyPercentTip" class="tipInput" type="button" value="50%" />
           </label>
         </li>
         <li>
           <label for="customTip">
-            <input id="customTip" class="tipInput" type="button" value="Custom" />
+            <input id="customTip" class="tipInput" type="number" placeholder="Custom" />
           </label>
         </li>
       </ul>
-  
-      <h2>Number of People</h2>
-      <label id="peopleLabel" for="numPeople">
-        <img id="icon-person" src="images/icon-person.svg" alt="icon-person" />
-        <input id="numPeople" type="number" name="numPeople" placeholder="0" />
-      </label>
+
+      <div class="numPeopleContainer group">
+        <h2>Number of People</h2>
+        <div id="numPeopleError" class="hide">Can't be zero</div>
+        <label id="peopleLabel" for="numPeople">
+          <img id="icon-person" src="images/icon-person.svg" alt="icon-person" />
+          <input id="numPeople" type="number" name="numPeople" placeholder="0" min="0" />
+        </label>
+      </div>
     </form>
   
     <div class="resultContainer">
