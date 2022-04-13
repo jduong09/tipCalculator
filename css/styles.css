@@ -177,8 +177,9 @@ span {
   body {
     justify-content: center;
   }
+
   main {
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     display: flex;
     border-radius: 1rem;
@@ -194,5 +195,15 @@ span {
     justify-content: space-between;
     padding: 2rem;
     margin: 0 2rem;
+  }
+  
+  #tipContainer {
+    padding-bottom: 2rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .tipList {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
