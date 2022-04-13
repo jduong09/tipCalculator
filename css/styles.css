@@ -1,11 +1,14 @@
 html, body {
-  min-height: 100%;
+  height: 100%;
 }
 
 body {
   font-family: 'Space Mono', monospace;
   background-color: hsl(185, 41%, 84%);
   font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 header {
@@ -32,6 +35,8 @@ main {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   padding: 2rem 0;
+  position: relative;
+  bottom: 0;
 }
 
 form {
@@ -166,4 +171,28 @@ span {
   color:hsl(183, 100%, 15%);
   text-transform: uppercase;
   background-color:hsl(172, 67%, 45%);
+}
+
+@media (min-width: 768px) {
+  body {
+    justify-content: center;
+  }
+  main {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    border-radius: 1rem;
+  }
+
+  form {
+    margin: 0 2rem;
+  }
+
+  .resultContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    margin: 0 2rem;
+  }
 }
